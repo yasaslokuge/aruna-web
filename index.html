@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aruna Sandaruwan — Operations &amp; Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF7;
+    --surface:#FFFFFF;
+    --tint:#F3EEE1;
+    --ink:#20304A;
+    --muted:#727E8C;
+    --accent:#B8923B;
+    --accent-soft:#8a6d13;
+    --blue:#2F6690;
+    --blue-deep:#1F4E6E;
+    --blue-tint:#EAF2F6;
+    --line:#E8E3D6;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    font-weight:400;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .mono{font-family:'IBM Plex Mono',monospace; letter-spacing:0.04em;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:3px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,250,247,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:20px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand-mark{
+    width:32px;height:32px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--blue-deep); font-weight:600;
+    background:
+      linear-gradient(var(--bg), var(--bg)) padding-box,
+      linear-gradient(135deg, var(--accent), var(--blue)) border-box;
+    border:1.5px solid transparent;
+  }
+  .brand-name{font-size:14px; letter-spacing:0.03em; color:var(--ink);}
+  nav.links{display:flex; gap:32px; align-items:center;}
+  nav.links a.nav-link{
+    color:var(--muted); text-decoration:none; font-size:14px;
+  }
+  nav.links a.nav-link:hover{color:var(--ink);}
+  .cta-btn{
+    display:inline-block; padding:10px 20px; border-radius:24px;
+    font-size:13.5px; text-decoration:none;
+    border:1px solid var(--ink); color:var(--ink);
+    transition:all .2s ease;
+  }
+  .cta-btn:hover{
+    background:linear-gradient(120deg, var(--blue-deep), var(--accent-soft));
+    border-color:transparent;
+    color:var(--surface);
+  }
+  .menu-toggle{display:none; background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;}
+
+  /* HERO */
+  section.hero{
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  section.hero::before{
+    content:"";
+    position:absolute;
+    top:-160px; right:-140px;
+    width:520px; height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(47,102,144,0.16), rgba(47,102,144,0) 70%);
+    pointer-events:none;
+  }
+  section.hero::after{
+    content:"";
+    position:absolute;
+    bottom:-180px; left:-160px;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(184,146,59,0.12), rgba(184,146,59,0) 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:64px; align-items:center;
+    position:relative; z-index:1;
+  }
+  .eyebrow{
+    font-size:12.5px; color:var(--accent); text-transform:uppercase;
+    margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:20px;height:1px; background:var(--accent); display:inline-block;}
+  h1.hero-head{font-size:clamp(30px,4vw,46px); line-height:1.18; font-weight:500;}
+  h1.hero-head em{font-style:italic; color:var(--blue-deep);}
+  p.hero-sub{margin-top:20px; max-width:480px; color:var(--muted); font-size:16px;}
+  .status-line{
+    margin-top:26px; font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .status-dot{width:7px;height:7px;border-radius:50%; background:var(--blue);}
+  .hero-ctas{margin-top:32px;}
+
+  .id-photo{
+    justify-self:end; width:100%; max-width:300px;
+    border-radius:12px; overflow:hidden;
+    box-shadow:0 24px 44px -14px rgba(31,78,110,0.28);
+    border:1px solid var(--line);
+    position:relative; z-index:1;
+  }
+  .id-photo img{width:100%; display:block; object-fit:cover;}
+
+  /* SECTIONS */
+  section{padding:80px 0;}
+  section.tint{background:var(--tint);}
+  section.tint-blue{background:var(--blue-tint);}
+  .section-head{margin-bottom:44px; max-width:600px;}
+  .section-head h2{font-size:clamp(24px,2.8vw,32px);}
+  .section-head p{color:var(--muted); margin-top:12px; font-size:15px;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1.3fr 0.7fr; gap:48px; align-items:start;}
+  .about-grid p{font-size:15.5px; color:var(--ink);}
+  .tag-row{display:flex; flex-wrap:wrap; gap:9px;}
+  .tag{
+    border:1px solid var(--line); color:var(--ink);
+    padding:7px 14px; font-size:12.5px; border-radius:20px; background:var(--surface);
+  }
+
+  /* EXPERIENCE + EDUCATION combined timeline */
+  .route{position:relative; padding-left:28px;}
+  .route::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background-image:linear-gradient(var(--blue) 55%, transparent 0%);
+    background-size:1px 8px; background-repeat:repeat-y; opacity:0.6;
+  }
+  .stop{position:relative; margin-bottom:44px;}
+  .stop:last-child{margin-bottom:0;}
+  .stop::before{
+    content:""; position:absolute; left:-28px; top:6px;
+    width:9px;height:9px;border-radius:50%; background:var(--blue);
+    box-shadow:0 0 0 4px rgba(47,102,144,0.14);
+  }
+  .stop-meta{font-size:11.5px; color:var(--accent); text-transform:uppercase; margin-bottom:6px;}
+  .stop h3{font-size:18px;}
+  .stop .role{color:var(--muted); font-size:13.5px; margin-top:3px;}
+  .stop ul{margin:12px 0 0; padding-left:16px; color:var(--ink); font-size:14px;}
+  .stop li{margin-bottom:7px;}
+  .stop.edu-stop{opacity:0.92;}
+  .divider-label{
+    margin:52px 0 32px -28px; font-size:11px; color:var(--muted); text-transform:uppercase;
+    letter-spacing:0.08em; padding-left:28px; border-top:1px dashed var(--line); padding-top:20px;
+  }
+
+  /* SKILLS */
+  .chip-row{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{
+    border:1px solid var(--line); color:var(--ink);
+    padding:8px 14px; font-size:13px; border-radius:20px; background:var(--surface);
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .chip:hover{border-color:var(--blue); color:var(--blue-deep);}
+  .chip.placeholder{border-style:dashed; color:var(--accent-soft);}
+
+  /* PROJECTS */
+  .proj-note{
+    background:var(--surface); border:1px dashed var(--accent);
+    padding:16px 20px; font-size:13.5px; color:var(--accent-soft); margin-bottom:32px; border-radius:8px;
+  }
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  .proj-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:24px; display:flex; flex-direction:column;
+  }
+  .proj-card .tag-mini{font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em;}
+  .proj-card h3{font-size:16.5px; margin-top:10px;}
+  .proj-card p{font-size:13.5px; color:var(--muted); margin-top:10px; flex-grow:1;}
+  .proj-card .fill-me{margin-top:12px; font-size:11.5px; color:var(--accent-soft); border-top:1px dashed var(--line); padding-top:10px;}
+
+  /* CONTACT */
+  .contact-col{max-width:420px;}
+  .contact-item{margin-bottom:18px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:14px;}
+  .contact-item .k{font-size:12px; color:var(--muted);}
+  .contact-item .v a{text-decoration:none; border-bottom:1px solid var(--blue); color:var(--blue-deep); padding-bottom:1px; font-size:14.5px;}
+
+  footer{border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:12px; text-align:center;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .id-photo{justify-self:start; max-width:220px; margin-top:24px;}
+    .about-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    nav.links{
+      position:fixed; top:65px; left:0; right:0; background:var(--bg);
+      flex-direction:column; align-items:flex-start; padding:22px 28px; gap:16px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%); transition:transform .25s ease;
+    }
+    nav.links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">AS</span>
+      <span class="brand-name">Aruna Sandaruwan</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav class="links" id="navLinks">
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#contact">Contact</a>
+      <a class="cta-btn" href="#" id="resumeBtn">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">OPERATIONS &amp; LOGISTICS</div>
+      <h1 class="hero-head">I keep goods, data, and <em>deadlines</em> moving in the same direction.</h1>
+      <p class="hero-sub">Operations and Logistics graduate specializing in supply chain optimization, process improvement, and demand forecasting — with hands-on experience coordinating international freight, customs documentation, and account management.</p>
+      <div class="status-line"><span class="status-dot"></span> Open to opportunities · Sri Lanka</div>
+      <div class="hero-ctas">
+        <a class="cta-btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="id-photo">
+      <img src="assets/profile.jpg" alt="Aruna Sandaruwan">
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">ABOUT</div>
+      <h2>From dock schedules to demand curves.</h2>
+    </div>
+    <div class="about-grid">
+      <p>
+        I'm an Operations and Logistics Management graduate (BSc, NSBM Green University Town) specializing in supply chain
+        optimization, process improvement, and demand forecasting. Across two client-facing operations roles, I've built a
+        track record in data analysis, inventory strategy, and cross-functional coordination — turning academic frameworks
+        into practical, day-to-day operational gains.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Supply Chain</span>
+        <span class="tag">Forecasting</span>
+        <span class="tag">Inventory Strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint-blue" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">EXPERIENCE</div>
+      <h2>The route so far.</h2>
+    </div>
+    <div class="route">
+      <div class="stop">
+        <div class="stop-meta mono">2026 — Present</div>
+        <h3>Sales and Marketing Executive</h3>
+        <div class="role">Sea Trade Services (Pvt) Ltd</div>
+        <ul>
+          <li>Coordinated end-to-end international freight operations with shipping lines, customs brokers, and logistics providers to ensure zero-delay shipments and full schedule adherence.</li>
+          <li>Prepared, verified, and processed critical export/import documentation — including bills of lading, commercial invoices, and certificates of origin — maintaining 100% regulatory compliance.</li>
+        </ul>
+      </div>
+      <div class="stop">
+        <div class="stop-meta mono">May 2025 — Feb 2026</div>
+        <h3>Sales and Marketing Executive</h3>
+        <div class="role">Hemas Pharmaceuticals — Maharagama</div>
+        <ul>
+          <li>Maintained accurate, detailed account records covering pharmacy orders, client preferences, and payment cycles to streamline recurring fulfillment and account management.</li>
+          <li>Collaborated closely with pharmacists to optimize product placement, monitor inventory levels, and ensure high-demand items remained prominently displayed and well-stocked.</li>
+        </ul>
+      </div>
+
+      <div class="divider-label mono">Education</div>
+
+      <div class="stop edu-stop">
+        <div class="stop-meta mono">2021 — 2025</div>
+        <h3>BSc Operations and Logistics Management</h3>
+        <div class="role">NSBM Green University Town, Homagama</div>
+      </div>
+      <div class="stop edu-stop">
+        <div class="stop-meta mono">2019</div>
+        <h3>GCE Advanced Level</h3>
+        <div class="role">Piliyandala Central College</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">SKILLS</div>
+      <h2>What I bring to the table.</h2>
+    </div>
+    <div class="chip-row">
+      <span class="chip">Freight Coordination</span>
+      <span class="chip">Export/Import Documentation</span>
+      <span class="chip">Customs Compliance</span>
+      <span class="chip">Inventory Management</span>
+      <span class="chip">Demand Forecasting</span>
+      <span class="chip">Data Analysis</span>
+      <span class="chip">Account Management</span>
+      <span class="chip placeholder">+ Add tools (Excel / SAP / Power BI?)</span>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">PROJECTS</div>
+      <h2>Case studies in progress.</h2>
+    </div>
+    <div class="proj-note">
+      Placeholder — replace with a final-year project, a coursework case study, or a work initiative written up as
+      problem → approach → result. Happy to help draft these once you pick what to feature.
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="tag-mini mono">CASE STUDY 01</div>
+        <h3>[Project title]</h3>
+        <p>One or two lines on the problem you tackled.</p>
+        <div class="fill-me">Fill in: problem → approach → result</div>
+      </div>
+      <div class="proj-card">
+        <div class="tag-mini mono">CASE STUDY 02</div>
+        <h3>[Project title]</h3>
+        <p>One or two lines on the problem you tackled.</p>
+        <div class="fill-me">Fill in: problem → approach → result</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">CONTACT</div>
+      <h2>Let's connect.</h2>
+    </div>
+    <div class="contact-col">
+      <div class="contact-item">
+        <span class="k">Email</span>
+        <span class="v"><a href="mailto:arunasadaruwan520@gmail.com">arunasadaruwan520@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="k">Phone</span>
+        <span class="v"><a href="tel:+94763642450">+94 76 364 2450</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="k">LinkedIn</span>
+        <span class="v"><a href="#" id="linkedinLink">Add your full URL</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">© 2026 Aruna Sandaruwan</div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+</body>
+</html>
