@@ -127,10 +127,9 @@
   .hero-ctas{margin-top:32px;}
 
   .id-photo{
-    justify-self:end; width:100%; max-width:300px;
-    border-radius:12px; overflow:hidden;
-    box-shadow:0 24px 44px -14px rgba(31,78,110,0.28);
-    border:1px solid var(--line);
+    justify-self:end; width:100%; max-width:380px;
+    border-radius:14px; overflow:hidden;
+    box-shadow:0 24px 44px -14px rgba(31,78,110,0.24);
     position:relative; z-index:1;
   }
   .id-photo img{width:100%; display:block; object-fit:cover;}
@@ -207,6 +206,33 @@
   .contact-item{margin-bottom:18px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:14px;}
   .contact-item .k{font-size:12px; color:var(--muted);}
   .contact-item .v a{text-decoration:none; border-bottom:1px solid var(--blue); color:var(--blue-deep); padding-bottom:1px; font-size:14.5px;}
+
+  /* GALLERY / CAROUSEL */
+  .carousel-wrap{position:relative;}
+  .carousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:8px; scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .carousel-card{
+    flex:0 0 auto; width:320px; scroll-snap-align:start;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden;
+  }
+  .carousel-card img{width:100%; height:210px; object-fit:cover; display:block;}
+  .carousel-caption{padding:16px 18px;}
+  .carousel-caption .k{font-size:11px; color:var(--blue); text-transform:uppercase; letter-spacing:0.06em;}
+  .carousel-caption p{margin:6px 0 0; font-size:13.5px; color:var(--muted);}
+  .carousel-nav{display:flex; gap:10px; margin-top:20px;}
+  .carousel-nav button{
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    cursor:pointer; font-size:16px; transition:border-color .2s ease, color .2s ease;
+  }
+  .carousel-nav button:hover{border-color:var(--blue); color:var(--blue-deep);}
+  @media (max-width:860px){
+    .carousel-card{width:82vw;}
+  }
 
   footer{border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:12px; text-align:center;}
 
@@ -326,6 +352,44 @@
   </div>
 </section>
 
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">ON THE JOB</div>
+      <h2>Work in pictures.</h2>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel" id="workCarousel">
+        <div class="carousel-card">
+          <img src="assets/seatrade-card.jpg" alt="Sea Trade Services business card">
+          <div class="carousel-caption">
+            <div class="k mono">Sea Trade Services</div>
+            <p>Marketing Executive — international freight &amp; logistics.</p>
+          </div>
+        </div>
+        <div class="carousel-card">
+          <img src="assets/seatrade.jpeg" alt="Sea Trade company">
+          <div class="carousel-caption">
+            <div class="k mono">Sea Trade Services</div>
+            <p>Coordinating freight operations and export/import documentation.</p>
+          </div>
+        </div>
+        <div class="carousel-card">
+          <img src="assets/ferentino.jpg" alt="Ferentino Tyres campaign">
+          <div class="carousel-caption">
+            <div class="k mono">Ferentino Tyres</div>
+            <p>Marketing campaign — "Tested in USA &amp; Europe, now in Sri Lanka."</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button id="carPrev" aria-label="Previous">←</button>
+        <button id="carNext" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
@@ -404,6 +468,11 @@
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const carousel = document.getElementById('workCarousel');
+  const scrollAmount = () => carousel.querySelector('.carousel-card').offsetWidth + 20;
+  document.getElementById('carPrev').addEventListener('click', () => carousel.scrollBy({left: -scrollAmount(), behavior:'smooth'}));
+  document.getElementById('carNext').addEventListener('click', () => carousel.scrollBy({left: scrollAmount(), behavior:'smooth'}));
 </script>
 </body>
 </html>
